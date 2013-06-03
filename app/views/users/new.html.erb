@@ -1,0 +1,25 @@
+<h1>Sign up</h1>
+
+<div class="row">
+    <div class="span6 offset3">
+        <%= form_for(@user) do |u| %>
+
+            <%= u.label :name %>
+            <%= u.text_field :name %>
+
+            <%= u.label :email %>
+            <%= u.text_field :email %>
+
+            <%= u.label :coins, "Number of coins in your wallet(ex 4.5)" %>
+            <%= u.number_field :coins %>
+
+            <%= u.label :password %>
+            <%= u.password_field :password %>
+
+            <%= u.label :password_confirmation, "Confirmation" %>
+            <%= u.password_field :password_confirmation %>
+
+            <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
+        <% end %>
+    </div>
+</div>
