@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603172141) do
+ActiveRecord::Schema.define(:version => 20130604042717) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(:version => 20130603172141) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
+  end
+
+  create_table "workers", :force => true do |t|
+    t.string   "name"
+    t.float    "hashrate"
+    t.boolean  "online"
+    t.integer  "gput1"
+    t.integer  "gput2"
+    t.integer  "gput3"
+    t.integer  "gput4"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

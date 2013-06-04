@@ -59,6 +59,15 @@ p{
 }
 
 /* header */
+header{
+    span{
+        float: right;
+        padding-right: 100px;
+        padding-top: 12px;
+        margin-left: 5px;
+        margin-top: 12px;
+    }
+}
 
 #logo{
     float: left;

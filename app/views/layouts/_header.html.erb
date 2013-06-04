@@ -1,14 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
  <div class ="navbar-inner">
   <div class="container">
-      <%= link_to "EJW Mining", root_path ,id:"logo" %> 
+      <%= link_to "Mining Monitor", root_path ,id:"logo" %> 
       <nav>
        <ul class="nav pull-right">
            <li><%= link_to "Home",    root_path  %></li>
            <li><%= link_to "Sign in", '#' %> </li>
            <li><%= link_to "Workers", workers_path %></li>
-           <span class="label label-inverse">LTC price:$<%= ltc_price() %> </span>
        </ul>
+       <span class="label label-inverse">LTC price:$<%= ltc_price() %> </span>
       </nav>
   </div>
  </div>
