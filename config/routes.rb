@@ -1,4 +1,6 @@
 MiningApp::Application.routes.draw do
+  get "pools/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'info_pages#home'
@@ -7,7 +9,9 @@ MiningApp::Application.routes.draw do
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-  match '/worker', to: 'workers#home'
+  match '/worker', to: 'workers#new'
+  match '/pools', to: 'pools#new'
+  match '/settings', to: 'info_pages#settings'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
