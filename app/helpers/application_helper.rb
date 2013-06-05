@@ -6,4 +6,11 @@ module ApplicationHelper
       @ticker = @JSON['ticker']
       @price = @ticker['sell']
     end
+
+    def btc_price()
+        @response = HTTParty.get("https://www.btc-e.com/api/2/btc_usd/ticker")
+        @JSON = JSON.parse(@response)
+        @ticket = @JSON['ticker']
+        @price = @ticket['sell']
+    end
 end
