@@ -9,6 +9,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
+#  remember_token  :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -18,7 +19,7 @@ class User < ActiveRecord::Base
 
 
   before_save { |user| user.email = email.downcase }
-  
+  before_save :create_remember_token
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -28,4 +29,10 @@ class User < ActiveRecord::Base
   VALID_COINS_REGEX= /\A\d+(\.\d)?\d*\z/
   validates :coins, format: { with: VALID_COINS_REGEX }
 
-end
+  private
+    def create_remember_token
+        self.remember_token= SecureRandom.urlsafe_base64
+    end
+
+
+end             

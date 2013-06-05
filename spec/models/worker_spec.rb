@@ -12,6 +12,7 @@
 #  gput4      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  ip_address :string(255)
 #
 
 require 'spec_helper'

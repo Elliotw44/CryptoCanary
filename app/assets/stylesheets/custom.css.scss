@@ -3,7 +3,7 @@
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
-
+$highlightColor: #6699ff;
 @mixin box_sizing {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -67,6 +67,12 @@ header{
         margin-left: 5px;
         margin-top: 12px;
     }
+    a{
+        color: #fff;
+        &:hover{
+            color:$highlightColor;
+        }
+    }
 }
 
 #logo{
@@ -80,7 +86,7 @@ header{
     font-weight: bold;
     line-height: 1;
     &:hover{
-     color: $grayMediumLight;
+     color:$highlightColor;
      text-decoration: none;
     }
 }
@@ -95,7 +101,7 @@ footer{
     a{
      color: #555;
      &:hover {
-      color: #222;
+      color: $highlightColor;
      }
     }
     small {

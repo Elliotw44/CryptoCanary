@@ -12,22 +12,25 @@
 #  gput4      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  ip_address :string(255)
 #
 
 class Worker < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :gput1, :gput2, :gput3, :gput4, :hashrate, :name, :online
+  attr_accessible :gput1, :gput2, :gput3, :gput4, :hashrate, :name, :online, :user_id, :ip_address
 
   validates :name, presence: true, length: { maximum: 25 }
 
-  after_initialize :set_defaults
+  before_save :set_defaults
   private
   def set_defaults
-      self.gput1 = 0 if self.new_record?
-      self.gput2 = 0 if self.new_record?
-      self.gput3 = 0 if self.new_record?
-      self.hashrate = 0 if self.new_record?
-      self.online = false if self.new_record?
+      self.gput1 ||= 0  
+      self.gput2 ||= 0 
+      self.gput3 ||= 0
+      self.gput4 ||= 0 
+      self.hashrate ||= 0
+      self.online ||= false
+      self.ip_address ||= '0'
   end
 
 end
