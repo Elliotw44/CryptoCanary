@@ -2,7 +2,10 @@
  <h1>Welcome to the Mining monitoring Website</h1>
 
  <h2> This is the Home page for Mining Monitoring</h2>
- <p> Sign in to manage your account and your workers.</p>
-
-<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn- primary"%>
+ <% if !signed_in?() %>
+  <p> Sign in to manage your account and your workers.</p>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn- primary"%>
+  <%else%>
+      <P> Manager your Workers and Pools from the drop down menu and dont forget get to check your coin total!</p>
+  <%end%>
 </div>
