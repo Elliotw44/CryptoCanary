@@ -1,6 +1,6 @@
 class WorkersController < ApplicationController
 
-    def home
+    def new
     end
 
 end
