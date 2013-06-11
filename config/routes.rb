@@ -1,7 +1,7 @@
 MiningApp::Application.routes.draw do
-  get "pools/new"
 
   resources :users
+ # map.resources :users, :has_many => :workers
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'info_pages#home'
   match '/contact', to: 'info_pages#contact'

@@ -5,11 +5,11 @@
 #  id              :integer          not null, primary key
 #  name            :string(255)
 #  email           :string(255)
-#  coins           :float
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
 #  remember_token  :string(255)
+#  coins           :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   VALID_COINS_REGEX= /\A\d+(\.\d)?\d*\z/
-  validates :coins, format: { with: VALID_COINS_REGEX }
+  validates :coins, presence: true, format: { with: VALID_COINS_REGEX }
 
   private
     def create_remember_token
