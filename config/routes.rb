@@ -1,15 +1,15 @@
 MiningApp::Application.routes.draw do
 
-  resources :users
- # map.resources :users, :has_many => :workers
+  resources :users do
+     resources :workers
+  end 
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'info_pages#home'
   match '/contact', to: 'info_pages#contact'
   match '/about', to: 'info_pages#about'
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
-  match '/worker', to: 'workers#new'
+  match '/signout', to: 'sessions#destroy', via: :delete 
   match '/pools', to: 'pools#new'
   match '/settings', to: 'info_pages#settings'
   # The priority is based upon order of creation:
