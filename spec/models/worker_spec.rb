@@ -13,6 +13,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  ip_address :string(255)
+#  user_id    :integer
 #
 
 require 'spec_helper'

@@ -13,14 +13,15 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  ip_address :string(255)
+#  user_id    :integer
 #
 
 class Worker < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :gput1, :gput2, :gput3, :gput4, :hashrate, :name, :online, :user_id, :ip_address
+  attr_accessible :gput1, :gput2, :gput3, :gput4, :hashrate, :name, :online, :ip_address
 
   validates :name, presence: true, length: { maximum: 25 }
-
+  validates :user_id, presence: true
   before_save :set_defaults
   private
   def set_defaults

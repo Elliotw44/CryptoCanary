@@ -13,7 +13,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :workers
+  has_many :workers, dependent: :destroy
   attr_accessible :coins, :email, :name, :password, :password_confirmation
   has_secure_password
 
