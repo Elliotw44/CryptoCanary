@@ -8,7 +8,7 @@ class WorkersController < ApplicationController
     def create
        @user = User.find(params[:user_id])
        @worker= Worker.new(params[:worker])
-       @worker.user_id = @user.id
+       @worker.user_id= @user.id
        if @worker.save
         flash[:success] = "Worker information saved!"
         redirect_to @user
@@ -19,6 +19,11 @@ class WorkersController < ApplicationController
 
 
     def show
+    end
+
+    def update
+        @user = User.find(params[:user_id])
+        @worker = Worker.find(params[:id])
     end
 
 
