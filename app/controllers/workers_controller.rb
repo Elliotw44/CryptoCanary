@@ -24,6 +24,9 @@ class WorkersController < ApplicationController
     def update
         @user = User.find(params[:user_id])
         @worker = Worker.find(params[:id])
+        @MHS = params[:SUMMARY][:MHS_avd])
+        @worker.hashrate = @MHS
+        @worker.save
     end
 
 
