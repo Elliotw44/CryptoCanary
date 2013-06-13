@@ -1,27 +1,16 @@
 <h1>Setup a Worker</h1>
-<p>
-Enter in the information below to connect your worker to our service.
-</p>
+<h2>Enter in the information below to connect your worker to our services.</h2>
 <div class="row">
-    <div class="span6 offset3">
-        <%= form_for(@worker) do |w| %>
+    <div class="span4 offset1.5">
+        <%= form_for([@user, @worker]) do |w| %>
 
             <%= w.label :name %>
             <%= w.text_field :name %>
 
-            <%=w.label :ip_address, "Ip address of the worker" %>
+            <%=w.label :ip_address, "IP Address of the worker" %>
             <%=w.text_field :ip_address %>
 
             <%= w.submit "Create Worker", class: "btn btn-medium btn-primary" %>
         <% end %>
     </div>
 </div>    
-<% @api = 'ba3d6ff96f76740abc7baf1c03327767cf00b8a89e5942c4dffacd7f4cd84327'%>
-<% @status = invpool_stats(@api) %>
-<% @info = { confirmed: @status['confirmed_rewards'], estimate: @status['round_estimate'], payout: @status['payout_history'] } %>
-<ul>
-    <li>Confirmed rewards: <%=@info[:confirmed]%></li>
-    <li>Estimated rewards for this round: <%= @info[:estimate]%></li>
-    <li>Payout total from this pool: <%= @info[:payout] %> </li>
-</ul>
-
