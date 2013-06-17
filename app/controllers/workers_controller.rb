@@ -25,7 +25,7 @@ class WorkersController < ApplicationController
         @user = User.find(params[:user_id])
         @worker = Worker.find(params[:id])
         @response = params[:SUMMARY]
-        @arrayed = @response[0]
+        @arrayed = @response.first
         @parsed = JSON.parse(@rarrayed)
         @MHS = @parsed['MHS av']
         @worker.hashrate = @MHS
