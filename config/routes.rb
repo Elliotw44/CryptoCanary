@@ -1,5 +1,6 @@
 MiningApp::Application.routes.draw do
 
+  #match '/worker/update', to: 'workers#update'
   resources :users do
      resources :workers
   end 
