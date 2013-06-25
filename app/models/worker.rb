@@ -22,14 +22,4 @@ class Worker < ActiveRecord::Base
   attr_accessible :accepted, :rejected, :hw_errors, :num_gpu, :hashrate, :name, :online, :back_up_pool, :worker_user_name
   validates :name, presence: true, length: { maximum: 25 }
   validates :user_id, presence: true
-  before_save :set_defaults
-  private
-    def set_defaults
-        self.accepted   ||= 0
-        self.rejected   ||= 0
-        self.hw_errors  ||= 0
-        self.num_gpu    ||= 0
-        self.hashrate   ||= 0
-        self.online     ||= false
-    end
 end

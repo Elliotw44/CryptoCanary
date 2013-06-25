@@ -9,6 +9,7 @@ class WorkersController < ApplicationController
        @user = User.find(params[:user_id])
        @worker= Worker.new(params[:worker])
        @worker.user_id= @user.id
+       @worker.worker_user_name = "#{@user.name.downcase}:#{@worker.name.downcase}"
        if @worker.save
         flash[:success] = "Worker information saved!"
         redirect_to @user
@@ -28,7 +29,7 @@ class WorkersController < ApplicationController
         @worker_user_name = @hash['workerusername']
         @worker = Worker.find_by_worker_user_name
         @worker.hashrate = @MHS
-        if(@worker.save)
+        if @worker.save
             render status: 200
         else
             render status: 401
