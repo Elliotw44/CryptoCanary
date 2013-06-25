@@ -22,13 +22,17 @@ class WorkersController < ApplicationController
     end
 
     def update
-        @user = User.find(params[:user_id])
-        @worker = Worker.find(params[:id])
         @array = params[:SUMMARY]
         @hash = @array[0]
         @MHS = @hash['MHS av']
+        @worker_user_name = @hash['workerusername']
+        @worker = Worker.find_by_worker_user_name
         @worker.hashrate = @MHS
-        @worker.save
+        if(@worker.save)
+            render status: 200
+        else
+            render status: 401
+        end
     end
 
 

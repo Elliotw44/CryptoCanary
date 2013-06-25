@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611232448) do
+ActiveRecord::Schema.define(:version => 20130625224435) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(:version => 20130611232448) do
     t.string   "name"
     t.float    "hashrate"
     t.boolean  "online"
-    t.integer  "gput1"
-    t.integer  "gput2"
-    t.integer  "gput3"
-    t.integer  "gput4"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "ip_address"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "user_id"
+    t.integer  "accepted"
+    t.integer  "rejected"
+    t.integer  "hw_errors"
+    t.integer  "num_gpu"
+    t.string   "back_up_pool"
+    t.string   "worker_user_name"
   end
 
   add_index "workers", ["user_id"], :name => "index_workers_on_user_id"

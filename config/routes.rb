@@ -1,8 +1,8 @@
 MiningApp::Application.routes.draw do
 
-  #match '/worker/update', to: 'workers#update'
+  match '/workers/update', to: 'workers#update', via: :put
   resources :users do
-     resources :workers
+     resources :workers, only: [:new, :create, :destroy, :show, :edit]
   end 
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'info_pages#home'

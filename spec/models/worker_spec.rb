@@ -2,18 +2,19 @@
 #
 # Table name: workers
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  hashrate   :float
-#  online     :boolean
-#  gput1      :integer
-#  gput2      :integer
-#  gput3      :integer
-#  gput4      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  ip_address :string(255)
-#  user_id    :integer
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  hashrate         :float
+#  online           :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  user_id          :integer
+#  accepted         :integer
+#  rejected         :integer
+#  hw_errors        :integer
+#  num_gpu          :integer
+#  back_up_pool     :string(255)
+#  worker_user_name :string(255)
 #
 
 require 'spec_helper'
