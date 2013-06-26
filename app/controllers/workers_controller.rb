@@ -23,12 +23,14 @@ class WorkersController < ApplicationController
     end
 
     def update
-        @worker = Worker.find_by_worker_user_name(params['worker_user_name'])
-        #@worker.hashrate = params['hashrate']
-        #@worker.accepted = params['accepted']
-        #@worker.rejected = params['rejected']
-        #@worker.hw_errors = params['hw_errors']
-        #@worker.num_gpu = params['num_gpu']
+        @worker = Worker.find_by_worker_user_name(params['worker_user_name'].strip!)
+        if @worker != nil
+           @worker.accepted = params['accepted']
+           @worker.hashrate = params['hashrate']
+           @worker.rejected = params['rejected']
+           @worker.hw_errors = params['hw_errors']
+           @worker.num_gpu = params['num_gpu']
+        end
         if @worker.save
             render status: 200
         else
