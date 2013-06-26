@@ -23,7 +23,6 @@ class WorkersController < ApplicationController
     end
 
     def update
-        puts params['worker_user_name']
         @worker = Worker.find_by_worker_user_name(params['worker_user_name'])
         if @worker != nil
            @worker.accepted = params['accepted']
