@@ -23,12 +23,9 @@ class WorkersController < ApplicationController
     end
 
     def update
-        @array = params[:SUMMARY]
-        @hash = @array[0]
-        @MHS = @hash['MHS av']
-        @worker_user_name = @hash['workerusername']
+        @JSON = params[:updateinfo]
         @worker = Worker.find_by_worker_user_name
-        @worker.hashrate = @MHS
+        @worker.hashrate = @JSON['hashrate']
         if @worker.save
             render status: 200
         else
