@@ -23,7 +23,7 @@ class WorkersController < ApplicationController
     end
 
     def update
-        @worker = Worker.find_by_worker_user_name(params['worker_user_name']
+        @worker = Worker.find_by_worker_user_name(params['worker_user_name'])
         @worker.hashrate = params['hashrate']
         @worker.accepted = params['accepted']
         @worker.rejected = params['rejected']
