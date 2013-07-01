@@ -5,7 +5,35 @@
 <% if @workerCount == 0 %>
     <p> You have zero workers add some workers from drop down menu Account under workers</p>
 <%else%>
-    <p>You have <%= @workerCount %> workers and the stats for the mining operation are <%= @workers = @user.workers %> </p>
+	<% @workerArray = @user.workers, i = 0%>
+    <p>You have <%= @workerCount %> workers and the stats for the mining operation are in the Table below </p>
+	<table class="table table-striped">
+	<caption> <%=@user.name%>'s Mining Statistics</caption>
+	 <thead>
+	  <tr>
+	    <th>Worker Name</th>
+		<th>Total Hashrate</th>
+		<th>Accepted Shares</th>
+		<th>Rejected Shares</th>
+		<th>Hardware Errors</th>
+		<th>Number of GPUs</th>
+		<th>Worker Status</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	 <%= @workerArray.each do |work|%>
+	    <tr>
+		  <td><%=work.name%></td>
+		  <td><%=work.hashrate + " MH/s"%></td>
+		  <td><%=work.accepted%></td>
+		  <td><%=work.rejected%></td>
+		  <td><%=work.hw_errors%></td>
+		  <td><%=work.num_gpu%></td>
+		  <td><%="Not yet :("%></td>
+		</tr>
+	 <%end%> 
+	 </tbody>
+	</table>
 <%end%>
 
 
