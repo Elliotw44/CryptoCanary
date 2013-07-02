@@ -1,5 +1,5 @@
 class WorkersController < ApplicationController
-
+    include SessionsHelper
     def new
        @worker = Worker.new
        @user = User.find(params[:user_id])
@@ -7,7 +7,7 @@ class WorkersController < ApplicationController
 
     def create
        @user = User.find(params[:user_id])
-	   if @user != @current_user
+	   if !(current_user?(@user))
 	     render 'home'
 	   else
          @worker= Worker.new(params[:worker])
@@ -20,9 +20,6 @@ class WorkersController < ApplicationController
            render 'new'
         end
 	   end
-    end
-
-
     def show
     end
 
