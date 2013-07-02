@@ -20,6 +20,6 @@
 class Worker < ActiveRecord::Base
   belongs_to :user
   attr_accessible :accepted, :rejected, :hw_errors, :num_gpu, :hashrate, :name, :online, :back_up_pool, :worker_user_name
-  validates :name, presence: true, length: { maximum: 25 }
+  validates :name, presence: true, length: { maximum: 25 }, format: { with: VALID_NAME_REGEX }
   validates :user_id, presence: true
 end
