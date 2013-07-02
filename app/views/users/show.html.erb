@@ -5,10 +5,9 @@
 <% if @workerCount == 0 %>
     <p> You have zero workers add some workers from drop down menu Account under workers</p>
 <%else%>
-	<% @workerArray = @user.workers, i = 0%>
-    <p>You have <%= @workerCount %> workers and the stats for the mining operation are in the Table below </p>
+	<% @workerArray = @user.workers%>
+    <p>You have <%= @workerCount %> workers and the stats for the mining operation are in the Table below</p>
 	<table class="table table-striped">
-	<caption> <%=@user.name%>'s Mining Statistics</caption>
 	 <thead>
 	  <tr>
 	    <th>Worker Name</th>
@@ -21,10 +20,10 @@
 	  </tr>
 	  </thead>
 	  <tbody>
-	 <%= @workerArray.each do |work|%>
+	 <% @workerArray.each do |work|%>
 	    <tr>
 		  <td><%=work.name%></td>
-		  <td><%=work.hashrate + " MH/s"%></td>
+		  <td><%=work.hashrate + "MH/s"%></td>
 		  <td><%=work.accepted%></td>
 		  <td><%=work.rejected%></td>
 		  <td><%=work.hw_errors%></td>
