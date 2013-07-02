@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   #force signout to prevent CSRF attacks
   def handle_unverified_request
-      sign_out()
+      sign_out
       super
   end
 end

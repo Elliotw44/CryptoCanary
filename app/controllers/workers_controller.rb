@@ -7,15 +7,19 @@ class WorkersController < ApplicationController
 
     def create
        @user = User.find(params[:user_id])
-       @worker= Worker.new(params[:worker])
-       @worker.user_id= @user.id
-       @worker.worker_user_name = "#{@user.name.downcase}:#{@worker.name.downcase}"
-       if @worker.save
-        flash[:success] = "Worker information saved!"
-        redirect_to @user
-       else
-         render 'new'
-       end
+	   if @user != @current_user
+	     render 'home'
+	   else
+         @worker= Worker.new(params[:worker])
+         @worker.user_id= @user.id
+         @worker.worker_user_name = "#{@user.name.downcase}:#{@worker.name.downcase}"
+         if @worker.save
+           flash[:success] = "Worker information saved!"
+           redirect_to @user
+        else
+           render 'new'
+        end
+	   end
     end
 
 
