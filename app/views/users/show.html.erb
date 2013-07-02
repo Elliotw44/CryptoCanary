@@ -23,7 +23,7 @@
 	 <% @workerArray.each do |work|%>
 	    <tr>
 		  <td><%=work.name%></td>
-		  <td><%=work.hashrate + "MH/s"%></td>
+		  <td><%=work.hashrate.to_s() + "MH/s"%></td>
 		  <td><%=work.accepted%></td>
 		  <td><%=work.rejected%></td>
 		  <td><%=work.hw_errors%></td>
