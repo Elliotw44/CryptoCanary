@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
     include SessionsHelper
+    before_filter :signed_in_user, only: [:create, :destroy]
     def new
        @worker = Worker.new
        @user = User.find(params[:user_id])
@@ -21,6 +22,7 @@ class WorkersController < ApplicationController
         end
 	   end
     end
+
     def show
     end
 
@@ -40,5 +42,8 @@ class WorkersController < ApplicationController
         end
     end
 
-
+    def destroy
+        @worker.destroy
+        redirect_to(current_user)
+    end
 end

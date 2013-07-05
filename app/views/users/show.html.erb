@@ -3,7 +3,7 @@
 <p>you have <%=@coins = current_user.coins%> coins in your wallet.</p>
 <% @workerCount = @user.workers.size %>
 <% if @workerCount == 0 %>
-    <p> You have zero workers add some workers from drop down menu Account under workers</p>
+    <p> You have zero workers add workers from drop down menu Account</p>
 <%else%>
 	<% @workerArray = @user.workers%>
     <p>You have <%= @workerCount %> workers and the stats for the mining operation are in the Table below</p>
@@ -28,7 +28,7 @@
 		  <td><%=work.rejected%></td>
 		  <td><%=work.hw_errors%></td>
 		  <td><%=work.num_gpu%></td>
-		  <td><%="Not yet :("%></td>
+		  <td><%="Coming soon"%></td>
 		</tr>
 	 <%end%> 
 	 </tbody>
