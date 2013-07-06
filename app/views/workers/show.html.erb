@@ -1,12 +1,9 @@
 <% @worker = Worker.find_by_id(params[:id])%>
-<h1> Your Workers </h1>
-
-<p>Your workers and their stats below<p>
+<h1><%=@worker.name%>'s detailed statistics</h1>
 
 
-
-<% #class: "btn btn-small bit-danger" %>
 <% if current_user?(@worker.user) %>
-    <%= button_to "Delete", @worker, method: :delete, data: {confirm: "Are you sure you want to delete this worker?"}%>
+    <%@user = @worker.user%>
+    <%= button_to "Delete", user_worker_path(@user, @worker), method: :delete, class: "btn btn-small btn-danger", data: {confirm: "Are you sure you want to delete this worker?"}%>
 <%end%>
 
