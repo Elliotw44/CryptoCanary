@@ -7,7 +7,7 @@
 <%else%>
 	<% @workerArray = @user.workers%>
     <p>You have <%= @workerCount %> workers and the stats for the mining operation are in the Table below</p>
-	<table class="table table-striped">
+	<table data-provides="rowlink" class="table table-striped table-bordered">
 	 <thead>
 	  <tr>
 	    <th>Worker Name</th>
@@ -19,10 +19,10 @@
 		<th>Worker Status</th>
 	  </tr>
 	  </thead>
-	  <tbody>
+	  <tbody data-provides="rowlink">
 	 <% @workerArray.each do |work|%>
-	    <tr>
-		  <td><%=work.name%></td>
+          <tr class="rowlink">
+          <td><a href=<%=user_worker_path(@user,work)%>><%=work.name%></a></td>
 		  <td><%=work.hashrate.to_s() + "MH/s"%></td>
 		  <td><%=work.accepted%></td>
 		  <td><%=work.rejected%></td>
