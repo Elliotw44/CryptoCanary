@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625224435) do
+ActiveRecord::Schema.define(:version => 20130710015435) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(:version => 20130625224435) do
     t.integer  "num_gpu"
     t.string   "back_up_pool"
     t.string   "worker_user_name"
+    t.integer  "GPUT1"
+    t.integer  "GPUT2"
+    t.integer  "GPUT3"
+    t.integer  "GPUT4"
+    t.float    "GPUH1"
+    t.float    "GPUH2"
+    t.float    "GPUH3"
+    t.float    "GPUH4"
   end
 
   add_index "workers", ["user_id"], :name => "index_workers_on_user_id"

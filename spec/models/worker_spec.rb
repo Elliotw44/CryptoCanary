@@ -15,6 +15,14 @@
 #  num_gpu          :integer
 #  back_up_pool     :string(255)
 #  worker_user_name :string(255)
+#  GPUT1            :integer
+#  GPUT2            :integer
+#  GPUT3            :integer
+#  GPUT4            :integer
+#  GPUH1            :float
+#  GPUH2            :float
+#  GPUH3            :float
+#  GPUH4            :float
 #
 
 require 'spec_helper'
