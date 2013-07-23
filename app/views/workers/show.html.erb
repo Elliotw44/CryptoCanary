@@ -4,6 +4,50 @@
 
 <% if current_user?(@worker.user) %>
     <%@user = @worker.user%>
+    <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Current Instance Hashrate Avg</th>
+        <th>Accepted Shares</th>
+        <th>Rejected Shared</th>
+        <th>Hardware Errors</th>
+        <th>GPU1 Temp</th>
+        <th>GPU1 Hash</th>
+        <% if @worker.num_gpu >= 2 %>
+            <th>GPU2 Temp</th>
+            <th>GPU2 Hash</th>
+            <% if @worker.num_gpu >= 3%>
+                <th>GPU3 Temp</th>
+                <th>GPU3 Hash</th>
+                <% if @worker.num_gpu >= 4%>
+                    <th>GPU4 Temp</th>
+                    <th>GPU4 Hash</th>
+                <%end%>
+            <%end%>
+        <%end%>
+    </tr>
+    </thead>
+    <tbody>
+    <td><%=(@worker.hashrate * 1000).to_s() + "KH/s"%></td>
+    <td><%=@worker.accepted%></td>
+    <td><%=@worker.rejected%></td>
+    <td><%=@worker.hw_errors%></td> 
+    <td><%=@worker.GPUT1.to_s()%> </td>
+    <td><%=@worker.GPUH1.to_s()+"KH/s"%></td>
+    <% if @worker.num_gpu >= 2 %>
+        <td><%=@worker.GPUT2.to_s()%></td>
+        <td><%=@worker.GPUH2.to_s() + "KH/s"%></td>
+        <% if @worker.num_gpu >= 3%>
+            <td><%=@worker.GPUT3.to_s()%></td>
+            <td><%=@worker.GPUH3.to_s() + "KH/s"%></td>
+            <% if @worker.num_gpu >= 4%>
+                <td><%=@worker.GPUT4.to_s()%></td>
+                <td><%=@worker.GPUH4.to_s() + "KH/s"%></td>
+            <%end%>
+        <%end%>
+    <%end%>
+    </tbody>
+    </table> 
     <%= button_to "Delete", user_worker_path(@user, @worker), method: :delete, class: "btn btn-small btn-danger", data: {confirm: "Are you sure you want to delete this worker?"}%>
 <%end%>
 

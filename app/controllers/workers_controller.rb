@@ -12,6 +12,8 @@ class WorkersController < ApplicationController
 	   else
          @worker= Worker.new(params[:worker])
          @worker.user_id= @user.id
+         @worker.num_gpu = 0
+         @worker.hashrate = 0
          @worker.worker_user_name = "#{@user.name.downcase}:#{@worker.name.downcase}"
          if @worker.save
            flash[:success] = "Worker information saved!"
@@ -33,6 +35,23 @@ class WorkersController < ApplicationController
            @worker.rejected = params['rejected']
            @worker.hw_errors = params['hw_errors']
            @worker.num_gpu = params['num_gpu']
+           @gpuarray = params['gpus']
+           if @worker.num_gpu >= 1
+               @worker.GPUT1 = @gpuarray[0]
+               @worker.GPUH1 = @gpuarray[1] * 1000
+               if @worker.num_gpu >= 2
+                   @worker.GPUT2 = @gpuarray[2]
+                   @worker.GPUH2 = @gpuarray[3] * 1000
+                   if @worker.num_gpu >= 3 
+                       @worker.GPUT3 = @gpuarray[4]
+                       @worker.GPUH3 = @gpuarray[5] * 1000
+                      if @worker.num_gpu >= 4  
+                          @worker.GPUT4 = @gpuarray[6]
+                          @worker.GPUH4 = @gpuarray[7] * 1000
+                      end
+                   end
+               end
+           end
         end
         if @worker.save
             render status: 200

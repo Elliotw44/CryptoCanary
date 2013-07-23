@@ -20,8 +20,14 @@
 	  </tr>
 	  </thead>
 	  <tbody data-provides="rowlink">
-	 <% @workerArray.each do |work|%>
-          <tr class="rowlink">
+      <% @workerArray.each do |work|%>
+          <%if (work.GPUT1 != nil && work.GPUT1 > 89) || (work.GPUT2 != nil && work.GPUT2 > 89) || (work.GPUT3 != nil && work.GPUT3 > 89) || (work.GPUT4 != nil && work.GPUT4 > 89)%>   
+            <tr class="error">
+            <%elsif (work.GPUT1 != nil && work.GPUT1 > 81) || (work.GPUT2 != nil && work.GPUT2 > 81) || (work.GPUT3 != nil && work.GPUT3 > 81) || (work.GPUT4 != nil && work.GPUT4 > 81)%>
+            <tr class="warning">
+          <%else%>
+            <tr class="success">
+          <%end%>
           <td><a href=<%=user_worker_path(@user,work)%>><%=work.name%></a></td>
 		  <td><%=work.hashrate.to_s() + "MH/s"%></td>
 		  <td><%=work.accepted%></td>
