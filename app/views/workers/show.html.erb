@@ -36,13 +36,13 @@
     <td><%=@worker.GPUH1.to_s()+"KH/s"%></td>
     <% if @worker.num_gpu >= 2 %>
         <td><%=@worker.GPUT2.to_s()%></td>
-        <td><%=@worker.GPUH2.to_s() + "KH/s"%></td>
+        <td><%=(@worker.GPUH2*1000).to_s() + "KH/s"%></td>
         <% if @worker.num_gpu >= 3%>
             <td><%=@worker.GPUT3.to_s()%></td>
-            <td><%=@worker.GPUH3.to_s() + "KH/s"%></td>
+            <td><%=(@worker.GPUH3*1000).to_s() + "KH/s"%></td>
             <% if @worker.num_gpu >= 4%>
                 <td><%=@worker.GPUT4.to_s()%></td>
-                <td><%=@worker.GPUH4.to_s() + "KH/s"%></td>
+                <td><%=(@worker.GPUH4*1000).to_s() + "KH/s"%></td>
             <%end%>
         <%end%>
     <%end%>
