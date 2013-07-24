@@ -73,6 +73,7 @@ GEM
     mini_portile (0.5.1)
     multi_json (1.7.7)
     multi_xml (0.5.4)
+    newrelic_rpm (3.6.5.130)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     pg (0.12.2)
@@ -158,6 +159,7 @@ DEPENDENCIES
   jasny_bootstrap_extension_rails (~> 0.0.1)
   jquery-rails (= 2.0.2)
   json (= 1.8.0)
+  newrelic_rpm
   pg (= 0.12.2)
   rails (= 3.2.13)
   rspec-rails (= 2.11.0)
