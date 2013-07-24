@@ -3,8 +3,8 @@
   <div class="container">
       <%= link_to "Mining Monitor", root_path ,id:"logo" %> 
       <nav>
-      <span class="label label">LTC price:$<%= ltc_price() %> </span>
-      <span class="label label-warning">BTC Price:$<%= btc_price() %> </span>
+      <span class="label label">LTC price:$<%= 0  %> </span>
+      <span class="label label-warning">BTC Price:$<%= 0  %> </span>
        <ul class="nav pull-right">
            <li><%= link_to "Home",    root_path  %></li>
            <% if signed_in?() %>
