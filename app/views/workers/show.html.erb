@@ -39,7 +39,7 @@
     <% if @worker.num_gpu >= 2 %>
         <td><%=@worker.GPUT2.to_s() + "C"%></td>
         <td><%=(@worker.GPUH2*1000).to_s() + "KH/s"%></td>
-        <% @hashtotal += (@worker.GPU2H*1000) %>
+        <% @hashtotal += (@worker.GPUH2*1000) %>
         <% if @worker.num_gpu >= 3%>
             <td><%=@worker.GPUT3.to_s()+ "C"%></td>
             <td><%=(@worker.GPUH3*1000).to_s() + "KH/s"%></td>
