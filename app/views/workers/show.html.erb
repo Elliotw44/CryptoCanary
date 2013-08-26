@@ -33,7 +33,11 @@
     <td><%=@worker.rejected%></td>
     <td><%=@worker.hw_errors%></td> 
     <td><%=@worker.GPUT1.to_s() + "C"%> </td>
-    <td><%=(@worker.GPUH1*1000).to_s()+"KH/s"%></td>
+    <% if @worker.GPUH1.nil()? %>
+        <td><%= @worker.GPUH1.to_s() + "KH/s"%></td>
+    <%else%>
+        <td><%=(@worker.GPUH1*1000).to_s()+"KH/s"%></td>
+    <%end%>
     <% @hashtotal += (@worker.GPUH1*1000) %>
     <% if @worker.num_gpu >= 2 %>
         <td><%=@worker.GPUT2.to_s() + "C"%></td>
