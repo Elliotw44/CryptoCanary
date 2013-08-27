@@ -34,7 +34,7 @@ class WorkersController < ApplicationController
            @worker.hashrate = params['hr']
            @worker.rejected = params['r']
            @worker.hw_errors = params['he']
-           @gpuarray = params['gpus']
+           @gpuarray = params['gs']
            @worker.num_gpu = @gpuarray.length
            if @worker.num_gpu >= 1
                @worker.GPUT1 = @gpuarray[0]
