@@ -28,14 +28,14 @@ class WorkersController < ApplicationController
     end
 
     def update
-        @worker = Worker.find_by_worker_user_name(params['worker_user_name'])
+        @worker = Worker.find_by_worker_user_name(params['wun'])
         if @worker != nil
-           @worker.accepted = params['accepted']
-           @worker.hashrate = params['hashrate']
-           @worker.rejected = params['rejected']
-           @worker.hw_errors = params['hw_errors']
-           @worker.num_gpu = params['num_gpu']
+           @worker.accepted = params['a']
+           @worker.hashrate = params['hr']
+           @worker.rejected = params['r']
+           @worker.hw_errors = params['he']
            @gpuarray = params['gpus']
+           @worker.num_gpu = @gpuarray.length
            if @worker.num_gpu >= 1
                @worker.GPUT1 = @gpuarray[0]
                @worker.GPUH1 = @gpuarray[1] * 1000
