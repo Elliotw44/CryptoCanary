@@ -35,7 +35,7 @@ class WorkersController < ApplicationController
            @worker.rejected = params['r']
            @worker.hw_errors = params['he']
            @gpuarray = params['gs']
-           @worker.num_gpu = @gpuarray.length
+           @worker.num_gpu = (@gpuarray.length/2)
            if @worker.num_gpu >= 1
                @worker.GPUT1 = @gpuarray[0]
                @worker.GPUH1 = @gpuarray[1] * 1000
@@ -56,7 +56,7 @@ class WorkersController < ApplicationController
                    end
                end
            end
-           @worker.hashrate = @total_HR
+           @worker.hashrate = @total_HR * 1000
         end
         if @worker.save
             render status: 200
