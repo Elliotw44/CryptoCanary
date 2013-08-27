@@ -31,7 +31,7 @@ class WorkersController < ApplicationController
         @worker = Worker.find_by_worker_user_name(params['wun'])
         if @worker != nil
            @worker.accepted = params['a']
-           @worker.hashrate = params['hr']
+           @total_HR = 0
            @worker.rejected = params['r']
            @worker.hw_errors = params['he']
            @gpuarray = params['gs']
@@ -39,19 +39,24 @@ class WorkersController < ApplicationController
            if @worker.num_gpu >= 1
                @worker.GPUT1 = @gpuarray[0]
                @worker.GPUH1 = @gpuarray[1] * 1000
+               @total_HR += @gpuarray[1]
                if @worker.num_gpu >= 2
                    @worker.GPUT2 = @gpuarray[2]
                    @worker.GPUH2 = @gpuarray[3] * 1000
+                   @total_HR += @gpuarray[3]
                    if @worker.num_gpu >= 3 
                        @worker.GPUT3 = @gpuarray[4]
                        @worker.GPUH3 = @gpuarray[5] * 1000
+                       @total_HR += @gpuarray[5]
                       if @worker.num_gpu >= 4  
                           @worker.GPUT4 = @gpuarray[6]
                           @worker.GPUH4 = @gpuarray[7] * 1000
+                          @total_HR += gpuarray[7]
                       end
                    end
                end
            end
+           @worker.hashrate = @total_HR
         end
         if @worker.save
             render status: 200
@@ -66,4 +71,4 @@ class WorkersController < ApplicationController
         @worker.destroy
         redirect_to @user
     end
-end
+end             
