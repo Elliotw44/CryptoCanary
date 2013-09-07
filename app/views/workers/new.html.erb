@@ -1,9 +1,9 @@
 <h1>Setup a Worker</h1>
-<h2>Enter a worker name below to create a new worker. Note worker names are limited to a size of 2.</h2>
+<h2>Enter a worker name below to create a new worker.</h2>
 <div class="row">
     <div class="span4 offset1.5">
         <%= form_for([@user, @worker]) do |w| %>
-
+            <%= render 'shared/error_messages' %>
             <%= w.label :name %>
             <%= w.text_field :name %>
 
