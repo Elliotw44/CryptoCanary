@@ -37,25 +37,25 @@
         <td><%=@worker.GPUH1.to_s() + "KH/s"%></td>
         <% @hashtotal = 0 %>
     <%else%>
-        <td><%=(@worker.GPUH).to_s() + "KH/s"%></td>
-        <% @hashtotal += (@worker.GPUH) %>
+        <td><%=(@worker.GPUH1).to_s() + "KH/s"%></td>
+        <% @hashtotal += @worker.GPUH1 %>
     <%end%>
     <% if @worker.num_gpu >= 2 %>
         <td><%=@worker.GPUT2.to_s() + "C"%></td>
         <td><%=(@worker.GPUH2).to_s() + "KH/s"%></td>
-        <% @hashtotal += (@worker.GPUH2) %>
+        <% @hashtotal += @worker.GPUH2 %>
         <% if @worker.num_gpu >= 3%>
             <td><%=@worker.GPUT3.to_s()+ "C"%></td>
             <td><%=(@worker.GPUH3).to_s() + "KH/s"%></td>
-            <% @hashtotal += (@worker.GPUH3) %>
+            <% @hashtotal += @worker.GPUH3 %>
             <% if @worker.num_gpu >= 4%>
                 <td><%=@worker.GPUT4.to_s() + "C"%></td>
                 <td><%=(@worker.GPUH4).to_s() + "KH/s"%></td>
-                <% @hashtotal += (@worker.GPUH4) %>
+                <% @hashtotal += @worker.GPUH4 %>
             <%end%>
         <%end%>
     <%end%>
-    <td><%= @hashtotal.to_s()+ "KH/s"%></td>
+    <td><%= @hashtotal.to_s()+ " KH/s"%></td>
     </tbody>
     </table> 
     <%= button_to "Delete", user_worker_path(@user, @worker), method: :delete, class: "btn btn-small btn-danger", data: {confirm: "Are you sure you want to delete this worker?"}%>
