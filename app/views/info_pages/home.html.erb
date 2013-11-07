@@ -1,13 +1,13 @@
 <div class="center hero-unit">
- <h1>Welcome to the Mining monitoring Website</h1>
+ <h1>Welcome to the Minning Monitor</h1>
 
- <h2> This is the Home page for Mining Monitoring</h2>
+ <h2> This is the Home page for Minning Monitor</h2>
  <% if !signed_in?() %>
   <p> Sign in to manage your account and your workers.</p>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn- primary"%>
   <%else%>
-      <P> Setup and manage all of workers and pools from the drop down menu under Account.
-      Select Stats to view your current workers performance and your coin totals!
+      <P> Setup and manage all of workers from the drop down menu under Account.
+      Select Stats to view your current workers performance!
       </p>
   <%end%>
 </div>
