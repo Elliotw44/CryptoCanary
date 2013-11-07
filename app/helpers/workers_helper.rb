@@ -1,13 +1,4 @@
 module WorkersHelper
-    def find_worker_owner_by_ip(ip)
-        @worker = Worker.find_by_ip_address(ip)
-        @user = User.find(@worker.user_id)
-    end
-
-	def find_all_workers_for_user(user_id)
-	   @workers = Worker.find_by_user_id(user_id)
-	end
-
 	def total_worker_stats(user_id)
 	   @workers = Worker.find_by_user_id(user_id)
 	   @workers.each do |worker|  
