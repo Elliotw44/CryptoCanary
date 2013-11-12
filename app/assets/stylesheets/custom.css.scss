@@ -70,7 +70,7 @@ header{
     a{
         color: #fff;
         &:hover{
-            color:$highlightColor;
+            color:#fff229; //yellow
         }
     }
 }
@@ -86,7 +86,7 @@ header{
     font-weight: bold;
     line-height: 1;
     &:hover{
-     color:#57678c;
+     color:#fff229; //yellow
      text-decoration: none;
     }
 }
