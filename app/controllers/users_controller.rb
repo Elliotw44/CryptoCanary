@@ -7,6 +7,14 @@ class UsersController < ApplicationController
         if @user != current_user
             redirect_to(current_user)
         end
+        @workerArray = @user.workers
+        @workerArray.each do |work|
+            if((DateTime.now.to_time - DateTime.parse(work.updated_at).to_time) < (14 * 60 * 1000)) #14 minutes
+                work.online = true
+            else
+                work.online = false
+            end
+        end
     end 
 
     def new

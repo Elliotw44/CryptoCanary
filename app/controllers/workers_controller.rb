@@ -14,6 +14,7 @@ class WorkersController < ApplicationController
          @worker.user_id= @user.id
          @worker.num_gpu = 0
          @worker.hashrate = 0
+         @worker.online = false
          @worker.worker_user_name = "#{@user.name.downcase}:#{@worker.name.downcase}"
          if @worker.save
            flash[:success] = "Worker information saved!"
@@ -33,6 +34,7 @@ class WorkersController < ApplicationController
            @worker.accepted = params['a']
            @total_HR = 0
            @worker.rejected = params['r']
+           @worker.online = true
            @worker.hw_errors = params['he']
            @gpuarray = params['gs']
            @worker.num_gpu = (@gpuarray.length/2)

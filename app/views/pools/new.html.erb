@@ -1,10 +1,2 @@
 <h1>Setup a pool</h1>
 <p>Enter in the information below to connect your pool to our service.</p>
-<% @api = 'ba3d6ff96f76740abc7baf1c03327767cf00b8a89e5942c4dffacd7f4cd84327'%>
-<% @status = invpool_stats(@api) %>
- <% @info = { confirmed: @status['confirmed_rewards'], estimate: @status['round_estimate'], payout: @status['payout_history'] } %>
-  <ul>                          
-   <li>Confirmed rewards: <%=@info[:confirmed]%></li>
-   <li>Estimated rewards for this round: <%= @info[:estimate]%></li>
-   <li>Payout total from this pool: <%= @info[:payout] %> </li>
-  </ul>                           
