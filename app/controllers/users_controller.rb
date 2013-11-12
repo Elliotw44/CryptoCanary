@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         end
         @workerArray = @user.workers
         @workerArray.each do |work|
-            if((DateTime.now.to_time - DateTime.parse(work.updated_at).to_time) < (14 * 60 * 1000)) #14 minutes
+            if((DateTime.now.to_time - work.updated_at.to_time) < (14 * 60)) #14 minutes
             else
                 work.online = false
             end
