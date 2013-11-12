@@ -7,6 +7,7 @@ gem 'json', '1.8.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'jasny_bootstrap_extension_rails', '~> 0.0.1'
 gem 'newrelic_rpm'
+gem 'clockwork'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

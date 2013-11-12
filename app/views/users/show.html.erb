@@ -10,7 +10,8 @@
 	<table data-provides="rowlink" class="table table-bordered">
 	 <thead>
 	  <tr>
-	    <th>Worker Name</th>
+         <th>Worker Name</th>
+        <th>Status</th>
 		<th>Total Hashrate</th>
 		<th>Accepted Shares</th>
 		<th>Rejected Shares</th>
@@ -27,9 +28,10 @@
             <tr class="warning">
           <%else%>
             <tr class="success">
-          <%end%>
+            <%end%>
+          <td><%= worker.online ? "Online" : "Offline"
           <td><a href=<%=user_worker_path(@user,work)%>><%=work.name%></a></td>
-		  <td><%= work.online ? work.hashrate.to_s() + " KH/s" : "Offline"%></td>
+		  <td><%= work.online ? work.hashrate.to_s() + " KH/s" : "0"%></td>
 		  <td><%= work.online ? work.accepted : 0%></td>
 		  <td><%= work.online ? work.rejected : 0%></td>
 		  <td><%= work.online ? work.hw_errors : 0%></td>
