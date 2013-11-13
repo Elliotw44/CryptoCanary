@@ -1,6 +1,6 @@
-<h2> <%= @user.name %>'s Mining operation </h2>
-
-<p>you have <%=@coins = current_user.coins%> coins in your wallet.</p>
+<div class="page-header">
+    <h1>Worker Statistics <small><%=@user.name %>'s Miners</small></h1>
+</div>    
 <% @workerCount = @user.workers.size %>
 <% if @workerCount == 0 %>
     <p> You have zero workers add workers from drop down menu Account</p>
@@ -39,7 +39,12 @@
 		</tr>
 	 <%end%> 
 	 </tbody>
-	</table>
-<%end%>
-
-
+ </table>
+ <p>Legend</p>
+ <ul>
+     <li><small>Green row means all GPUs are under 78 degrees Celsius</small></li>
+     <li><small>Yellow row means all GPUs are under 80 degrees Celsius</small></li>
+     <li><small>Red row means any GPU is above 80 degrees Celsius</small></li>
+     <li><small>White row means the Worker is ofline</small></li>
+ </ul>
+ <%end%>
