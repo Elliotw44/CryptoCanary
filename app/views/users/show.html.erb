@@ -30,7 +30,7 @@
             <tr class="success">
           <%end%>
           <td><a href=<%=user_worker_path(@user,work)%>><%=work.name%></a></td>
-          <td><%= work.online ? "Online" : "Offline"%></td>
+          <td><%= work.online ? "Online" : "Offline @ " + work.updated_at.to_s()%></td>
 		  <td><%= work.online ? work.hashrate.to_s() + " KH/s" : "0"%></td>
 		  <td><%= work.online ? work.accepted : 0%></td>
 		  <td><%= work.online ? work.rejected : 0%></td>
