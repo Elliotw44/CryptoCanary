@@ -70,7 +70,7 @@ header{
     a{
         color: #fff;
         &:hover{
-            color:;$highlightColor
+            color:$highlightColor;
         }
     }
 }
