@@ -67,20 +67,8 @@ header{
         margin-left: 5px;
         margin-top: 12px;
     }
-    navbar{
-        ul{
-            a{
-                color: #fff;
-                &:hover{
-                    color:$highlightColor;
-                }
-            }
-            li{
-                &:hover{
-                    color:$highlightColor;
-                }
-            }
-        }
+.navbar-inner .container ul li a:hover{
+    color:$highlightColor;
     }
 }
 

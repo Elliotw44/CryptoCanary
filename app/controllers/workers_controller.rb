@@ -34,7 +34,6 @@ class WorkersController < ApplicationController
            @worker.accepted = params['a']
            @total_HR = 0
            @worker.rejected = params['r']
-           @worker.online = true
            @worker.hw_errors = params['he']
            @gpuarray = params['gs']
            @worker.num_gpu = (@gpuarray.length/2)
@@ -59,6 +58,11 @@ class WorkersController < ApplicationController
                end
            end
            @worker.hashrate = @total_HR * 1000
+           if(@worker.hashrate != 0)
+               @worker.online = true
+           else
+              @worker.online = false
+           end 
         end
         if @worker.save
             render status: 200
