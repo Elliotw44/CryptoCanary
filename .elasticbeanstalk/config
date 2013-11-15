@@ -1,0 +1,15 @@
+[global]
+ApplicationName=CanaryMinerMonitor_app
+AwsCredentialFile=/home/elliot/.elasticbeanstalk/aws_credential_file
+DevToolsEndpoint=git.elasticbeanstalk.us-west-2.amazonaws.com
+EnvironmentName=production
+EnvironmentType=SingleInstance
+InstanceProfileName=aws-elasticbeanstalk-ec2-role
+OptionSettingFile=/home/elliot/rails_projects/EJWmining_app/mining_app/.elasticbeanstalk/optionsettings.production
+RdsDeletionPolicy=Delete
+RdsEnabled=Yes
+RdsSourceSnapshotName=
+Region=us-west-2
+ServiceEndpoint=https://elasticbeanstalk.us-west-2.amazonaws.com
+SolutionStack=32bit Amazon Linux 2013.09 running Ruby 1.9.3
+
