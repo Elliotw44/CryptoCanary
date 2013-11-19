@@ -62,12 +62,16 @@ class WorkersController < ApplicationController
                @worker.online = true
            else
               @worker.online = false
-           end 
-        end
-        if @worker.save
-            render status: 200
+           end
+
+           if @worker.save
+               render status: 200
+           else
+              render status: 400
+           end
+
         else
-            render status: 401
+           render status: 500
         end
     end
 
