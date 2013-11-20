@@ -40,11 +40,11 @@
 	 <%end%> 
 	 </tbody>
  </table>
- <p>Legend</p>
- <ul>
-     <li><small>Green row means all GPUs are under 78 degrees Celsius</small></li>
-     <li><small>Yellow row means any GPU is above 80 degrees but below 85 degrees Celsius</small></li>
-     <li><small>Red row means any GPU is above 89 degrees Celsius</small></li>
-     <li><small>White row means the Worker is ofline</small></li>
- </ul>
+ <button type="button" class = "btn btn-info" data-toggle="collapse" data-target="#legend">Legend</button>
+ <div id="legend" class="collapse in">
+     <small class="text-success">Green row means all GPUs are under 78 degrees Celsius</small>
+     <small class="text-warning">Yellow row means any GPU is above 80 degrees but below 85 degrees Celsius</small>
+     <small class="text-error">Red row means any GPU is above 89 degrees Celsius</small>
+     <small>White row means the Worker is ofline</small>
+ </div>
  <%end%>
