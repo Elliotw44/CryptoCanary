@@ -6,7 +6,6 @@
     <p> You have zero workers add workers from drop down menu Account</p>
 <%else%>
 	<% @workerArray = @user.workers%>
-    <p>You have <%= @workerCount %> workers and the stats for the mining operation are in the Table below</p>
 	<table data-provides="rowlink" class="table table-bordered">
 	 <thead>
 	  <tr>
@@ -41,10 +40,12 @@
 	 </tbody>
  </table>
  <button type="button" class = "btn" data-toggle="collapse" data-target="#legend">Legend</button>
- <div id="legend" class="collapse in">
-         <p class="text-success">Green row means all GPUs are under 78 degrees Celsius</p>
-         <p class="text-warning">Yellow row means any GPU is above 80 degrees but below 89 degrees Celsius</p>
-         <p class="text-error">Red row means any GPU is above 89 degrees Celsius</p>
-         <p class="text-muted">White row means the Worker is ofline</p>
+ <div id="legend" class="collapse">
+     <ul>
+         <li><small>Green row means all GPUs are under 78 degrees Celsius</small></li>
+         <li><small>Yellow row means any GPU is above 80 degrees but below 89 degrees Celsius</small></li>
+         <li><small>Red row means any GPU is above 89 degrees Celsius</small></li>
+         <li><small>White row means the Worker is ofline</small></li>
+     </ul>
  </div>
  <%end%>
