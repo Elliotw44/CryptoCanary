@@ -23,14 +23,10 @@ class UsersController < ApplicationController
     def create
         @user= User.new(params[:user])
         @user.name.strip!
-        if(verify_recaptcha())
-            if @user.save
-                sign_in(@user)
-                flash[:success] = "Welcome to the mining monitor website!"
-                redirect_to @user
-            else
-                render 'new'
-            end
+         if @user.save
+            sign_in(@user)
+            flash[:success] = "Welcome to the mining monitor website!"
+            redirect_to @user
         else
             render 'new'
         end
