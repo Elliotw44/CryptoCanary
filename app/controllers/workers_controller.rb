@@ -15,7 +15,7 @@ class WorkersController < ApplicationController
          @worker.num_gpu = 0
          @worker.hashrate = 0
          @worker.online = false
-         @worker.worker_user_name = "#{@user.name.downcase}:#{@worker.name.downcase}"
+         @worker.worker_user_name = "#{@user.id}:#{@worker.name.downcase}"
          if @worker.save
            flash[:success] = "Worker information saved!"
            redirect_to @user
