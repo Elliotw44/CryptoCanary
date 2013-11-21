@@ -3,7 +3,7 @@
 <div class="row">
     <div class="span6 offset3">
         <%= form_for(@user) do |u| %>
-            <%= render 'shared/user_error_msg' %>
+            <%= render 'shared/error_messages' %>
 
             <%= u.label :name %>
             <%= u.text_field :name %>
@@ -20,6 +20,8 @@
             <%= u.label :password_confirmation, "Confirmation" %>
             <%= u.password_field :password_confirmation %>
 
+            <%= recaptcha_tags %> 
+            
             <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
         <% end %>
     </div>
