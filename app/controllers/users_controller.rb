@@ -32,6 +32,7 @@ class UsersController < ApplicationController
               format.html { render 'new' }
            end
          else
+              flash.delete(:recaptcha_error)
               format.html { redirect_to(root_path, flash[:error] = "Please retry the reCaptcha Verification") }
          end
         end
