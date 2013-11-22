@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         @user= User.new(params[:user])
         @user.name.strip!
         respond_to do |format|
-         if(verify_recaptcha(:model => @user)
+         if(verify_recaptcha(:model => @user))
            if @user.save
               sign_in(@user)
               flash[:success] = "Welcome to the mining monitor website!"
