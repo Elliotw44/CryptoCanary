@@ -20,7 +20,7 @@
             <%= u.label :password_confirmation, "Confirmation" %>
             <%= u.password_field :password_confirmation %>
 
-            <%= recaptcha_tags :display = 'white' %> 
+            <%= recaptcha_tags :display => {theme: 'white' , tabindex: nil} %> 
             
             <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
         <% end %>
