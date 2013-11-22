@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         end
         @workerArray = @user.workers
         @workerArray.each do |work|
-            if((DateTime.now.to_time - work.updated_at.to_time) < (6.25 * 60) and work.online) #14 minutes
+            if((DateTime.now.to_time - work.updated_at.to_time) < (6.25 * 60) and work.online) #6.25 minutes
             else
                 work.online = false
             end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         @user= User.new(params[:user])
         @user.name.strip!
         respond_to do |format|
-         if(verify_recaptcha(:model => @user))
+         if(verify_recaptcha(model: @user timeout: 10))
            if @user.save
               sign_in(@user)
               format.html { redirect_to(@user, flash[:success] = "Welcome to Miners Canary!") }
