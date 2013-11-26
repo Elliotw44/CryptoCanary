@@ -11,16 +11,13 @@
             <%= u.label :email %>
             <%= u.text_field :email %>
 
-            <%= u.label :coins, "Number of coins in your wallet(ex 4.5)" %>
-            <%= u.text_field :coins %>
-
             <%= u.label :password %>
             <%= u.password_field :password %>
 
             <%= u.label :password_confirmation, "Confirmation" %>
             <%= u.password_field :password_confirmation %>
 
-            <%= recaptcha_tags display: { theme: 'clean' , tabindex: 'nil' }%> 
+            <%= recaptcha_tags display: { ssl: true, theme: 'clean' , tabindex: 5, public_key: = ENV['RECAPTCHA_PUBLIC_KEY'] }%> 
             
             <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
         <% end %>
