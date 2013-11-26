@@ -24,16 +24,11 @@ class UsersController < ApplicationController
         @user= User.new(params[:user])
         @user.name.strip!
         respond_to do |format|
-         if(verify_recaptcha(model: @user, timeout: 10))
-           if @user.save
+         if(verify_recaptcha(:model => @user, :message => "Error with reCaptcha!", :timeout => 10) && @user.save)
               sign_in(@user)
               format.html { redirect_to(@user, flash[:success] = "Welcome to Miners Canary!") }
-           else 
-              format.html { render 'new' }
-           end
          else
-              flash.delete(:recaptcha_error)
-              format.html { redirect_to(root_path, flash[:error] = "Please retry the reCaptcha Verification") }
+              format.html { render 'new' }
          end
         end
     end
