@@ -17,7 +17,7 @@
             <%= u.label :password_confirmation, "Confirmation" %>
             <%= u.password_field :password_confirmation %>
 
-            <%= recaptcha_tags display: { ssl: true, theme: 'clean' , tabindex: 5, public_key: = ENV['RECAPTCHA_PUBLIC_KEY'] }%> 
+            <%= recaptcha_tags display: { ssl: true, theme: 'clean' , tabindex: 5, public_key: ENV['RECAPTCHA_PUBLIC_KEY'] }%> 
             
             <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
         <% end %>
