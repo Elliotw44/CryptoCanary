@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         @user= User.new(params[:user])
         @user.name.strip!
         respond_to do |format|
-         if(verify_recaptcha(:model => @user, :message => "Error with reCaptcha!", :private_key => ENV['RECAPTCHA_PRIVATE_KEY'], :timeout => '10') && @user.save)
+         if(verify_recaptcha(:model => @user, :message => "Error with reCaptcha!", :private_key => ENV['RECAPTCHA_PRIVATE_KEY']) && @user.save)
               sign_in(@user)
               format.html { redirect_to(@user, flash[:success] = "Welcome to Miners Canary!") }
          else
