@@ -27,9 +27,9 @@ class UsersController < ApplicationController
          if(verify_recaptcha(model: @user, message: "Error with reCaptcha!", private_key: ENV['RECAPTCHA_PRIVATE_KEY'], timeout: 10) && @user.save)
               sign_in(@user)
               flash[:success] = "Welcome to Miners Canary"
-              redirect_to @user
+              format { redirect_to @user }
          else
-               render 'new' 
+               format { render 'new' }
          end
         end
     end
