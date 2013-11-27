@@ -29,7 +29,7 @@ class UsersController < ApplicationController
               redirect_to @user
         else
               flash.delete(:recaptcha_error)
-              @user_vehicle.errors.add(:base, I18n.t(:wrong_captcha))
+              @user.errors.add(:base, I18n.t(:wrong_captcha))
               render 'new'
         end
     end
