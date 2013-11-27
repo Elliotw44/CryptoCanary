@@ -28,6 +28,7 @@ class UsersController < ApplicationController
               flash[:success] = "Welcome to Miners Canary"
               redirect_to @user
         else
+              flash.delete(:recaptcha_error)
               render 'new'
         end
     end
