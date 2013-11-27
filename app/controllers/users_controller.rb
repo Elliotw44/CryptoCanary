@@ -23,14 +23,12 @@ class UsersController < ApplicationController
     def create
         @user= User.new(params[:user])
         @user.name.strip!
-        respond_to do |format|
-         if(verify_recaptcha(model: @user, message: "Error with reCaptcha!", private_key: ENV['RECAPTCHA_PRIVATE_KEY'], timeout: 10) && @user.save)
+        if(verify_recaptcha(model: @user, message: "Error with reCaptcha!", private_key: ENV['RECAPTCHA_PRIVATE_KEY'], timeout: 10) && @user.save)
               sign_in(@user)
               flash[:success] = "Welcome to Miners Canary"
-              format { redirect_to @user }
-         else
-               format { render 'new' }
-         end
+              redirect_to @user
+        else
+              render 'new'
         end
     end
 
