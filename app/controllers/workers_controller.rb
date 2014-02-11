@@ -52,7 +52,7 @@ class WorkersController < ApplicationController
                       if @worker.num_gpu >= 4  
                           @worker.GPUT4 = @gpuarray[6]
                           @worker.GPUH4 = @gpuarray[7] * 1000
-                          @total_HR += gpuarray[7]
+                          @total_HR += @gpuarray[7]
                       end
                    end
                end
