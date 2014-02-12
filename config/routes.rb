@@ -1,6 +1,6 @@
 MiningApp::Application.routes.draw do
 
-  match '/workers/update', to: 'workers#update', via: :patch
+  match '/workers/update', to: 'workers#update', via: :put
   resources :users do
      resources :workers, only: [:new, :create, :destroy, :show, :edit]
   end 
