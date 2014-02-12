@@ -27,7 +27,7 @@
 
 class Worker < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :accepted, :rejected, :hw_errors, :num_gpu, :hashrate, :name, :online, :back_up_pool, :worker_user_name, :GPUT1, :GPUT2, :GPUT3, :GPUT4, :GPUH1, :GPUH2, :GPUH3, :GPUH4, :updated_at
+  default_scope { order('name asc') }
   validates :name, presence: true, length: { maximum: 3 }, format: { with: VALID_NAME_REGEX }
   validates :user_id, presence: true
 end

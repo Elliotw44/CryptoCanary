@@ -1,18 +1,18 @@
 MiningApp::Application.routes.draw do
 
-  match '/workers/update', to: 'workers#update', via: :put
+  match '/workers/update', to: 'workers#update', via: :patch
   resources :users do
      resources :workers, only: [:new, :create, :destroy, :show, :edit]
   end 
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'info_pages#home'
-  match '/contact', to: 'info_pages#contact'
-  match '/about', to: 'info_pages#about'
-  match '/signup', to: 'users#new'
-  match '/signin', to: 'sessions#new'
+  get '/contact', to: 'info_pages#contact'
+  get '/about', to: 'info_pages#about'
+  get '/signup', to: 'users#new'
+  get '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete 
-  match '/pools', to: 'pools#new'
-  match '/settings', to: 'info_pages#settings'
+  get '/pools', to: 'pools#new'
+  get '/settings', to: 'info_pages#settings'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

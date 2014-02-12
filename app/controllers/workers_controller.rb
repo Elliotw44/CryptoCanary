@@ -29,7 +29,7 @@ class WorkersController < ApplicationController
     end
 
     def update
-        @worker = Worker.find_by_worker_user_name(params['wun'])
+        @worker = Worker.find_by(worker_user_name: params['wun'])
         if @worker != nil
            @worker.accepted = params['a']
            @total_HR = 0
