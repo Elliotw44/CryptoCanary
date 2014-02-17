@@ -6,7 +6,7 @@
     <%@user = @worker.user%>
     <%if @worker.online %>
         <b>
-        <h1> <%=@worker.hashrate + " KH/s"%> </h1>
+        <h1> <%=@worker.hashrate.to_s() + " KH/s"%> </h1>
         <canvas id="myCanvas" width="800" height="350"></canvas>
         <script type="text/javascript">
          (function () {
