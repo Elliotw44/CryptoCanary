@@ -6,7 +6,7 @@
     <%@user = @worker.user%>
     <%if @worker.online %>
         <b>
-        <h1> <%=@worker.hashrate %> </h1>
+        <h1> <%=@worker.hashrate + " KH/s"%> </h1>
         <canvas id="myCanvas" width="800" height="350"></canvas>
         <script type="text/javascript">
          (function () {
@@ -18,18 +18,20 @@
         var context = canvas.getContext('2d');
         createCircle(100, 150, <%=@worker.GPUT1%>, <%=@worker.GPUH1%>);
         <%if @worker.num_gpu >= 2 %>
-            createCircle(300, 150, <%=@worker.GPUT2%>, <%=@worker.GPUH2%>);
+           createCircle(300, 150, <%=@worker.GPUT2%>, <%=@worker.GPUH2%>);
             <% if @worker.num_gpu >= 3%>
                 createCircle(500, 150, <%=@worker.GPUT3%>, <%=@worker.GPUH3%>);
                 <% if @worker.num_gpu >= 4%>
-                        createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>;
+                    createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>;
                 <% end %>
             <% end %>
         <% end %>      
 
     function createCircle(x, y, temp, hash, callback) {
         var radius = 75;
-         var endPercent = parseInt(temp, 10);
+        var endPercent = parseInt(temp, 10);
+        if(endPercent > 120)
+             endPercent = 120;
         if(endPercent > 50)
             endPercent = (50 + (endPercent - 50) * (58/100));
         var curPerc = 0;
