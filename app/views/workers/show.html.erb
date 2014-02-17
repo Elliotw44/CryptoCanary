@@ -4,63 +4,86 @@
 </div>
 <% if current_user?(@worker.user) %>
     <%@user = @worker.user%>
-	<%if @worker.online %>
-    	<% @hashtotal = 0 %>
-    	<table class="table table-striped table-bordered">
-    	<thead>
-    	<tr>
-        	<th>Accepted Shares</th>
-        	<th>Rejected Shared</th>
-        	<th>Hardware Errors</th>
-        	<th>GPU1 Temp</th>
-        	<th>GPU1 Hash</th>
-        	<% if @worker.num_gpu >= 2 %>
-            	<th>GPU2 Temp</th>
-            	<th>GPU2 Hash</th>
-            	<% if @worker.num_gpu >= 3%>
-                	<th>GPU3 Temp</th>
-                	<th>GPU3 Hash</th>
-                	<% if @worker.num_gpu >= 4%>
-                    	<th>GPU4 Temp</th>
-                    	<th>GPU4 Hash</th>
-                	<%end%>
-            	<%end%>
-        	<%end%>
-        	<th>Last 5s Hashrate Avg</th>
-    	</tr>
-    	</thead>
-    	<tbody>
-    	<td><%=@worker.accepted%></td>
-    	<td><%=@worker.rejected%></td>
-    	<td><%=@worker.hw_errors%></td> 
-    	<td><%=@worker.GPUT1.to_s() + "C"%> </td>
-    	<% if @worker.GPUH1.to_f == nil.to_f%>
-        	<td><%=@worker.GPUH1.to_s() + "KH/s"%></td>
-        	<% @hashtotal = 0 %>
-    	<%else%>
-        	<td><%=(@worker.GPUH1).to_s() + "KH/s"%></td>
-        	<% @hashtotal += @worker.GPUH1 %>
-    	<%end%>
-    	<% if @worker.num_gpu >= 2 %>
-        	<td><%=@worker.GPUT2.to_s() + "C"%></td>
-        	<td><%=(@worker.GPUH2).to_s() + "KH/s"%></td>
-        	<% @hashtotal += @worker.GPUH2 %>
-        	<% if @worker.num_gpu >= 3%>
-            	<td><%=@worker.GPUT3.to_s()+ "C"%></td>
-            	<td><%=(@worker.GPUH3).to_s() + "KH/s"%></td>
-            	<% @hashtotal += @worker.GPUH3 %>
-            	<% if @worker.num_gpu >= 4%>
-                	<td><%=@worker.GPUT4.to_s() + "C"%></td>
-                	<td><%=(@worker.GPUH4).to_s() + "KH/s"%></td>
-                	<% @hashtotal += @worker.GPUH4 %>
-            	<%end%>
-        	<%end%>
-    	<%end%>
-    	<td><%= @hashtotal.to_s()+ " KH/s"%></td>
-    	</tbody>
-    	</table> 
+    <%if @worker.online %>
+        <b>
+        <h1> <%=@worker.hashrate %> </h1>
+        <canvas id="myCanvas" width="800" height="350"></canvas>
+        <script type="text/javascript">
+         (function () {
+            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+            window.requestAnimationFrame = requestAnimationFrame;
+         }());
+
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        createCircle(100, 150, <%=@worker.GPUT1%>, <%=@worker.GPUH1%>);
+        <%if @worker.num_gpu >= 2 %>
+            createCircle(300, 150, <%=@worker.GPUT2%>, <%=@worker.GPUH2%>);
+            <% if @worker.num_gpu >= 3%>
+                createCircle(500, 150, <%=@worker.GPUT3%>, <%=@worker.GPUH3%>);
+                <% if @worker.num_gpu >= 4%>
+                        createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>;
+                <% end %>
+            <% end %>
+        <% end %>      
+
+    function createCircle(x, y, temp, hash, callback) {
+        var radius = 75;
+         var endPercent = parseInt(temp, 10);
+        if(endPercent > 50)
+            endPercent = (50 + (endPercent - 50) * (58/100));
+        var curPerc = 0;
+        var counterClockwise = false;
+        var circ = Math.PI * 2;
+        var quart = Math.PI / 2;
+
+        context.strokeStyle = '#006600';
+        context.ImageSmoothingEnabled=true;
+        context.lineWidth = 10;
+        context.lineCap = "round";
+        var offset = quart;
+
+     function doText(context, x, y, temp, hash) {
+         if (parseInt(temp, 10) > 89) context.fillStyle = '#ad2323';
+         else if (parseInt(temp, 10) > 81) context.fillStyle = '#ffcc33';
+         else context.fillStyle = '#006600';
+         context.font = "26px sans-serif";
+         context.beginPath();
+         context.clearRect(x - 25, y - 30, 52, 52);
+         context.fillText(temp + 'º', x - 20, y + 10);
+         context.fillText(hash + 'KH/s', x - 50, y - 100);
+         context.closePath();
+      }
+
+     function animate(current) {
+         context.font = "26px sans-serif";
+         if (curPerc > (50 + (89 - 50) * (58/100))) context.strokeStyle = '#ad2323';
+         else if (curPerc > (50 + (80 - 50) * (58/100))) context.strokeStyle = '#ffcc33';
+         context.clearRect(x - radius - context.lineWidth, 
+                  y - radius - context.lineWidth, 
+                  radius * 2 + (context.lineWidth*2), 
+                  radius * 2 + (context.lineWidth*2));
+         context.beginPath();
+
+         context.fillText(curPerc + 'º', x - 20, y + 10);
+         context.arc(x, y, radius, offset, ((circ) * current) + offset, false);
+         context.stroke();
+         context.closePath();
+         curPerc++;
+         if (curPerc < endPercent) {
+             requestAnimationFrame(function () {
+                 animate(curPerc / 100);
+             });
+         } else {
+             doText(context, x, y, temp, hash);
+             if (callback) callback.call();
+         }
+     }
+     animate();
+    }
+    </script>
 	<%else%>
-        <h2><%="#{@worker.name} is currently offline"%></h2>
+       <h2><%="#{@worker.name} is currently offline"%></h2>
     <%end%> 
     <%= button_to "Delete", user_worker_path(@user, @worker), method: :delete, class: "btn btn-small btn-danger", data: {confirm: "Are you sure you want to delete this worker?"}%>
 <%end%>
