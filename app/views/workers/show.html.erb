@@ -7,7 +7,7 @@
     <%if @worker.online %>
         <b>
         <h1> <%=@worker.hashrate.to_s() + " KH/s"%> </h1>
-        <canvas id="myCanvas" width="800" height="350"></canvas>
+        <canvas id="myCanvas" width="900" height="450"></canvas>
         <script type="text/javascript">
          (function () {
             var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -30,8 +30,8 @@
     function createCircle(x, y, temp, hash, callback) {
         var radius = 75;
         var endPercent = parseInt(temp, 10);
-        if(endPercent > 120)
-             endPercent = 120;
+        if(endPercent > 130)
+             endPercent = 130;
         if(endPercent > 50)
             endPercent = (50 + (endPercent - 50) * (58/100));
         var curPerc = 0;
