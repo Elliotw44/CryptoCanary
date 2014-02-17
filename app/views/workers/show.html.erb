@@ -22,11 +22,10 @@
             <% if @worker.num_gpu >= 3%>
                 createCircle(500, 150, <%=@worker.GPUT3%>, <%=@worker.GPUH3%>);
                 <% if @worker.num_gpu >= 4%>
-                    //createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>;
+                    createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>);
                 <% end %>
             <% end %>
         <% end %>      
-
     function createCircle(x, y, temp, hash, callback) {
         var radius = 75;
         var endPercent = parseInt(temp, 10);
