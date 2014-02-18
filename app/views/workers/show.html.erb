@@ -86,6 +86,12 @@
      animate();
     }
     </script>
+    <b>
+    <h4>Accept: <%=@worker.accepted %></h4>
+    <b>
+    <h4>Rejected: <%=@worker.rejected %></h4>
+    <b>
+    <h4>Hardware Errors: <%=@worker.hw_errors %></h4>
 	<%else%>
        <h2><%="#{@worker.name} is currently offline"%></h2>
     <%end%> 
