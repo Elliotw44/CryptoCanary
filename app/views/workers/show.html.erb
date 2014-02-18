@@ -7,7 +7,7 @@
     <%if @worker.online %>
         <b>
         <h1> <%=@worker.hashrate.to_s() + " KH/s"%> </h1>
-        <canvas id="myCanvas" width="900" height="450"></canvas>
+        <canvas id="myCanvas" width="800" height="280"></canvas>
         <script type="text/javascript">
          (function () {
             var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -16,17 +16,17 @@
 
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext('2d');
-        createCircle(100, 150, <%=@worker.GPUT1%>, <%=@worker.GPUH1%>);
+        createCircle(100, 150, <%=@worker.GPUT1%>, <%=@worker.GPUH1%>, 1);
         <%if @worker.num_gpu >= 2 %>
-           createCircle(300, 150, <%=@worker.GPUT2%>, <%=@worker.GPUH2%>);
+           createCircle(300, 150, <%=@worker.GPUT2%>, <%=@worker.GPUH2%>, 2);
             <% if @worker.num_gpu >= 3%>
-                createCircle(500, 150, <%=@worker.GPUT3%>, <%=@worker.GPUH3%>);
+                createCircle(500, 150, <%=@worker.GPUT3%>, <%=@worker.GPUH3%>, 3);
                 <% if @worker.num_gpu >= 4%>
-                    createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>);
+                    createCircle(700, 150, <%=@worker.GPUT4%>, <%=@worker.GPUH4%>, 4);
                 <% end %>
             <% end %>
         <% end %>      
-    function createCircle(x, y, temp, hash, callback) {
+    function createCircle(x, y, temp, hash, gpu, callback) {
         var radius = 75;
         var endPercent = parseInt(temp, 10);
         if(endPercent > 130)
@@ -44,7 +44,10 @@
         context.lineCap = "round";
         var offset = quart;
 
-     function doText(context, x, y, temp, hash) {
+     function doText(context, x, y, temp, hash, gpu) {
+         context.fillStyle = '#000000';
+         context.font = "22px sans-serif";
+         context.fillText('GPU.'+gpu, x - 40, y - 125);
          if (parseInt(temp, 10) > 89) context.fillStyle = '#ad2323';
          else if (parseInt(temp, 10) > 81) context.fillStyle = '#ffcc33';
          else context.fillStyle = '#006600';
@@ -76,7 +79,7 @@
                  animate(curPerc / 100);
              });
          } else {
-             doText(context, x, y, temp, hash);
+             doText(context, x, y, temp, hash, gpu);
              if (callback) callback.call();
          }
      }
