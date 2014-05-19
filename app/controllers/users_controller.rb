@@ -12,6 +12,7 @@ class UsersController < ApplicationController
             if((DateTime.now.to_time - work.updated_at.to_time) < (6.25 * 60) and work.online) #6.25 minutes
             else
                 work.online = false
+                work.save
             end
         end
     end 
