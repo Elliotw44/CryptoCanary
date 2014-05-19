@@ -26,73 +26,73 @@
                 <% end %>
             <% end %>
         <% end %>      
-    function createCircle(x, y, temp, hash, gpu, callback) {
-        var radius = 75;
-        var endPercent = parseInt(temp, 10);
-        if(endPercent > 130)
-             endPercent = 130;
-        if(endPercent > 50)
-            endPercent = (50 + (endPercent - 50) * (58/100));
-        var curPerc = 0;
-        var counterClockwise = false;
-        var circ = Math.PI * 2;
-        var quart = Math.PI / 2;
+    	function createCircle(x, y, temp, hash, gpu, callback) {
+        	var radius = 75;
+        	var endPercent = parseInt(temp, 10);
+        	if(endPercent > 130)
+             		endPercent = 130;
+        	if(endPercent > 50)
+            		endPercent = (50 + (endPercent - 50) * (58/100));
+        	var curPerc = 0;
+        	var counterClockwise = false;
+        	var circ = Math.PI * 2;
+        	var quart = Math.PI / 2;
 
-        context.strokeStyle = '#006600';
-        context.ImageSmoothingEnabled=true;
-        context.lineWidth = 10;
-        context.lineCap = "round";
-        var offset = quart;
+        	context.strokeStyle = '#006600';
+        	context.ImageSmoothingEnabled=true;
+        	context.lineWidth = 10;
+ 		context.lineCap = "round";
+        	var offset = quart;
 
-     function doText(context, x, y, temp, hash, gpu) {
-         context.fillStyle = '#000000';
-         context.font = "22px sans-serif";
-         context.fillText('GPU.'+gpu, x - 40, y - 125);
-         if (parseInt(temp, 10) > 89) context.fillStyle = '#ad2323';
-         else if (parseInt(temp, 10) > 81) context.fillStyle = '#ffcc33';
-         else context.fillStyle = '#006600';
-         context.font = "26px sans-serif";
-         context.beginPath();
-         context.clearRect(x - 25, y - 30, 52, 52);
-         context.fillText(temp + 'º', x - 20, y + 10);
-         context.fillText(hash + 'KH/s', x - 50, y - 100);
-         context.closePath();
-      }
+     		function doText(context, x, y, temp, hash, gpu) {
+         		context.fillStyle = '#000000';
+         		context.font = "22px sans-serif";
+         		context.fillText('GPU.'+gpu, x - 40, y - 125);
+         		if (parseInt(temp, 10) > 89) context.fillStyle = '#ad2323';
+         		else if (parseInt(temp, 10) > 81) context.fillStyle = '#ffcc33';
+         		else context.fillStyle = '#006600';
+         		context.font = "26px sans-serif";
+         		context.beginPath();
+         		context.clearRect(x - 25, y - 30, 52, 52);
+         		context.fillText(temp + 'º', x - 20, y + 10);
+         		context.fillText(hash + 'KH/s', x - 50, y - 100);
+         		context.closePath();
+      		}
 
-     function animate(current) {
-         context.font = "26px sans-serif";
-         if (curPerc > (50 + (89 - 50) * (58/100))) context.strokeStyle = '#ad2323';
-         else if (curPerc > (50 + (80 - 50) * (58/100))) context.strokeStyle = '#ffcc33';
-         context.clearRect(x - radius - context.lineWidth, 
-                  y - radius - context.lineWidth, 
-                  radius * 2 + (context.lineWidth*2), 
-                  radius * 2 + (context.lineWidth*2));
-         context.beginPath();
+     		function animate(current) {
+         		context.font = "26px sans-serif";
+         		if (curPerc > (50 + (89 - 50) * (58/100))) context.strokeStyle = '#ad2323';
+         		else if (curPerc > (50 + (80 - 50) * (58/100))) context.strokeStyle = '#ffcc33';
+         		context.clearRect(x - radius - context.lineWidth, 
+                  	y - radius - context.lineWidth, 
+                  	radius * 2 + (context.lineWidth*2), 
+                  	radius * 2 + (context.lineWidth*2));
+         		context.beginPath();
 
-         context.fillText(curPerc + 'º', x - 20, y + 10);
-         context.arc(x, y, radius, offset, ((circ) * current) + offset, false);
-         context.stroke();
-         context.closePath();
-         curPerc++;
-         if (curPerc < endPercent) {
-             requestAnimationFrame(function () {
-                 animate(curPerc / 100);
-             });
-         } else {
-             doText(context, x, y, temp, hash, gpu);
-             if (callback) callback.call();
-         }
-     }
-     animate();
-    }
-    </script>
-    <b>
-    <h4>Accept: <%=@worker.accepted %></h4>
-    <b>
-    <h4>Rejected: <%=@worker.rejected %></h4>
-    <b>
-    <h4>Hardware Errors: <%=@worker.hw_errors %></h4>
-	<%else%>
+         		context.fillText(curPerc + 'º', x - 20, y + 10);
+         		context.arc(x, y, radius, offset, ((circ) * current) + offset, false);
+         		context.stroke();
+         		context.closePath();
+         		curPerc++;
+        		if (curPerc < endPercent) {
+             			requestAnimationFrame(function () {
+                 		animate(curPerc / 100);
+             		});
+         		} else {
+             			doText(context, x, y, temp, hash, gpu);
+             			if (callback) callback.call();
+         		}
+		}
+     		animate();
+    	}
+    	</script>
+    	<b>
+    	<h4>Accept: <%=@worker.accepted %></h4>
+    	<b>
+    	<h4>Rejected: <%=@worker.rejected %></h4>
+	<b>
+    	<h4>Hardware Errors: <%=@worker.hw_errors %></h4>
+    <%else%>
        <h2><%="#{@worker.name} is currently offline"%></h2>
     <%end%> 
     <%= button_to "Delete", user_worker_path(@user, @worker), method: :delete, class: "btn btn-small btn-danger", data: {confirm: "Are you sure you want to delete this worker?"}%>
