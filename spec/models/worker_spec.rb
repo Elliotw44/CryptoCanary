@@ -13,7 +13,7 @@
 #  rejected         :integer
 #  hw_errors        :integer
 #  num_gpu          :integer
-#  back_up_pool     :string(255)
+#  pool             :string(255)
 #  worker_user_name :string(255)
 #  GPUT1            :integer
 #  GPUT2            :integer
@@ -23,6 +23,7 @@
 #  GPUH2            :float
 #  GPUH3            :float
 #  GPUH4            :float
+#  pool_online      :boolean
 #
 
 require 'spec_helper'
