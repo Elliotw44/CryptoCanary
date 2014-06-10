@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user= User.new(params[:user])
+        @user= User.create(user_params(params[:user]))
         @user.name.strip!
         if(verify_recaptcha(model: @user, private_key: ENV['RECAPTCHA_PRIVATE_KEY'], timeout: 10) && @user.save)
               sign_in(@user)
@@ -56,6 +56,10 @@ class UsersController < ApplicationController
             store_location
             redirect_to signin_url, notice: "Please Sign in."
         end
+    end
+
+    def user_params
+        params.require(:user).permit(:name, :email)
     end
 
     def correct_user
