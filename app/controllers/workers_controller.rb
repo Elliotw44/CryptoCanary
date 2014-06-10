@@ -10,7 +10,7 @@ class WorkersController < ApplicationController
 	   if !(current_user?(@user))
 	     render 'home'
 	   else
-         @worker= Worker.create(worker_params(params[:worker]))
+         @worker= Worker.new(worker_params(params[:worker]))
          @worker.user_id= @user.id
          @worker.num_gpu = 0
          @worker.hashrate = 0
